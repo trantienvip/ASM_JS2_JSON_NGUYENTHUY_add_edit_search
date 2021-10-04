@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="get">
+        <input type="text" placeholder="Tìm kiếm" name="q">
+    </form>
+    <div id="show"></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        // hien thu du lieu ra
+        axios.get('http://localhost:3000/themok')
+            .then(response => document.querySelector('#show').innerHTML = response.data.map(data => 
+             `${data.id}-${data.title}-${data.author} <a href="?id=${data.id}">Xem</a> <a href="./edit.html?id=${data.id}">Sửa</a> <br>`
+            ).join(''))
+
+        // hien thi chi tiet theo id
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var id = url.searchParams.get("id");
+        if (id) {
+            axios.get('http://localhost:3000/themok/'+id)
+            .then(response => document.querySelector('#show').innerHTML = `${response.data.id}-${response.data.title}-${response.data.author}`)
+        }
+
+        var q = url.searchParams.get("q");
+        if (q) {
+            axios.get('http://localhost:3000/themok?q='+q)
+            .then(response => document.querySelector('#show').innerHTML = response.data.map(data => 
+             `${data.id}-${data.title}-${data.author} <a href="?id=${data.id}">Xem</a> <a href="./edit.html?id=${data.id}">Sửa</a> <br>`
+            ).join(''))
+        }
+    </script>
+</body>
+</html>

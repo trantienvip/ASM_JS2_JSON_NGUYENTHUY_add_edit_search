@@ -1,0 +1,9 @@
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+npm init -y
+npm i json-server -g
+json-server --watch db.json
+
+
+// json-server-auth
+npm install -D json-server json-server-auth
+"start": 'json-server-auth --watch db.json'

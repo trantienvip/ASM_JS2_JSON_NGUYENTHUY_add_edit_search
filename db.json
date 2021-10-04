@@ -1,0 +1,34 @@
+{
+  "themok": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "json-server xxxxxx",
+      "author": "typicode"
+    },
+    {
+      "title": "trong anh",
+      "author": "12345",
+      "id": "53044215"
+    },
+    {
+      "id": "58306160",
+      "title": "tien",
+      "author": "456"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

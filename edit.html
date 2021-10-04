@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post" id="form-add">
+        <input type="text" id="title" placeholder="title">
+        <input type="text" id="author" placeholder="author">
+        <button type="submit">edit</button>
+    </form>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var form_add = document.querySelector('#form-add');
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var id = url.searchParams.get("id");
+
+        axios.get('http://localhost:3000/themok/'+id)
+        .then(response => `
+        ${document.querySelector('#title').value = response.data.title}
+        ${document.querySelector('#author').value = response.data.author}
+        `)
+
+
+        form_add.addEventListener('submit', function(e){
+            e.preventDefault();
+            var post = {
+                title: document.querySelector('#title').value,
+                author: document.querySelector('#author').value
+            }
+            axios.put('http://localhost:3000/themok/'+id, post)
+            .then(response => alert('sua thanh cong'))
+        })
+    </script>
+</body>
+</html>
